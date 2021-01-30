@@ -1,4 +1,10 @@
-const arr=[{"id":1,"first_name":"Bordie","last_name":"Poundford","position":"Devshare"},
+const express = require("express");
+const serverless = require("serverless-http");
+
+const app = express();
+const router = express.Router();
+
+const arr =[{"id":1,"first_name":"Bordie","last_name":"Poundford","position":"Devshare"},
 {"id":2,"first_name":"Allina","last_name":"Bannard","position":"Vimbo"},
 {"id":3,"first_name":"Carol","last_name":"Cayford","position":"Jaxspan"},
 {"id":4,"first_name":"Baudoin","last_name":"Brideau","position":"Trunyx"},
@@ -299,4 +305,11 @@ const arr=[{"id":1,"first_name":"Bordie","last_name":"Poundford","position":"Dev
 {"id":299,"first_name":"Basilius","last_name":"Ziemecki","position":"Jaxspan"},
 {"id":300,"first_name":"Duff","last_name":"Cope","position":"Abata"}]
 
-export default arr;
+router.get("/cards", (req, res) => {
+  res.json(arr);
+});
+
+app.use(`/.netlify/functions/api`, router);
+
+module.exports = app;
+module.exports.handler = serverless(app);
