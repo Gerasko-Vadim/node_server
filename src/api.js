@@ -306,8 +306,8 @@ const arr =[{"id":1,"first_name":"Bordie","last_name":"Poundford","position":"De
 {"id":300,"first_name":"Duff","last_name":"Cope","position":"Abata"}]
 var cors = require('cors')
  
-app.use(cors())
-router.get("/cards", (req, res) => {
+
+router.get("/cards", cors(),(req, res) => {
   res.json(arr);
 });
 
